@@ -21,6 +21,7 @@
 	<modules>
 		<module>statics-service</module>
 		<module>notification-service</module>
+		<module>account-service</module>
 	</modules>
 	
 	<dependencies>
@@ -49,6 +50,12 @@
 			<artifactId>spring-kafka-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
