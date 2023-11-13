@@ -1,4 +1,4 @@
-package com.vti.account;
+package com.vti.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
