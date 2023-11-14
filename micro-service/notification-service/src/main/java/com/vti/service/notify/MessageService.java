@@ -20,7 +20,7 @@ public class MessageService {
 	@KafkaListener(id = "notifycationGr", topics = "notification")
 	public void notify(MessageDTO dto) {
 		LOGGER.info("Received event: {}, at :{}", dto.getEvent(), dto.getTimestamp());
-		if(dto.event == "Registration") {
+		if(dto.event.equals("Registration")) {
 			ObjectMapper mapper = new ObjectMapper();
 			AccountDTO account = mapper.convertValue(dto.getContent(), AccountDTO.class);			
 			emailService.sendMail(account);
