@@ -34,7 +34,37 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - kafka-network
+
+  account-service:
+    container_name: account-service
+    build: ./micro-service/account-service
+    ports:
+      - 8888:8888
+    networks:
+      - db-network
+      - kafka-network
+  
+  notification-service:
+    container_name: notification-service
+    build: ./micro-service/notification-service
+    ports:
+      - 8081:8081
+    networks:
+      - db-network
+      - kafka-network
+  
+  statistics-service:
+    container_name: statics-service
+    build: ./micro-service/statics-service
+    ports:
+      - 8989:8989
+    networks:
+      - db-network
+      - kafka-network
 volumes:
   mysql-data: {}
 networks:
   db-network: {}
+  kafka-network: {}
