@@ -76,3 +76,4 @@ volumes:
   mysql-data: {}
 networks:
   db-network: {}
+  kafka-network: {}
