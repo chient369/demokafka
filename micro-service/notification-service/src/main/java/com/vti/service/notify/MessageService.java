@@ -19,18 +19,10 @@ public class MessageService {
 	
 	@KafkaListener(id = "notifycationGr", topics = "notification")
 	public void notify(MessageDTO dto) {
-		LOGGER.info("Received event: {}, at :{}", dto.getEvent(), dto.getTimestamp());
-		if(dto.event.equals("Registration")) {
+
 			ObjectMapper mapper = new ObjectMapper();
 			AccountDTO account = mapper.convertValue(dto.getContent(), AccountDTO.class);			
-			emailService.sendMail(account);
-		}
-
-		if(dto.event == "Test-Millions-msg") {
-			LOGGER.info("Received event: {} - at :{} - Content : {}", dto.getEvent(), dto.getTimestamp(),dto.content.toString());
-		}
-		
-		
-		
+			emailService.sendMail(account);	
+			LOGGER.info("Received event: {}, at :{}, data: {}", dto.getEvent(), dto.getTimestamp(),account.getEmail());
 	}
 }
